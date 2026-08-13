@@ -28,7 +28,9 @@ export default function Users() {
     setError(null)
     try {
       const base = getApiBase()
-      const fetchUrl = url || `${base}${endpoint}`
+      const fetchUrl = url || (import.meta.env.VITE_CODESPACE_NAME
+        ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/users/`
+        : 'http://localhost:8000/api/users/')
       const res = await fetch(fetchUrl)
       if (!res.ok) throw new Error(`${res.status} ${res.statusText}`)
       const data = await res.json()
