@@ -50,7 +50,9 @@ export default function Workouts() {
   return (
     <section>
       <h1>Workouts</h1>
-      <p>API endpoint: {getApiBase() + endpoint}</p>
+      <p>API endpoint: {import.meta.env.VITE_CODESPACE_NAME
+        ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/workouts/`
+        : 'http://localhost:8000/api/workouts/'} </p>
       {error && <div className="error">Error: {error}</div>}
       <ul>
         {items.map((it, idx) => (

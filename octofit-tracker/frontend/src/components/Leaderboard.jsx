@@ -50,7 +50,9 @@ export default function Leaderboard() {
   return (
     <section>
       <h1>Leaderboard</h1>
-      <p>API endpoint: {getApiBase() + endpoint}</p>
+      <p>API endpoint: {import.meta.env.VITE_CODESPACE_NAME
+        ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/leaderboard/`
+        : 'http://localhost:8000/api/leaderboard/'} </p>
       {error && <div className="error">Error: {error}</div>}
       <ol>
         {items.map((it, idx) => (

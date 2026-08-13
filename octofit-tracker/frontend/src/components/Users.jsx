@@ -50,7 +50,9 @@ export default function Users() {
   return (
     <section>
       <h1>Users</h1>
-      <p>API endpoint: {getApiBase() + endpoint}</p>
+      <p>API endpoint: {import.meta.env.VITE_CODESPACE_NAME
+        ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/users/`
+        : 'http://localhost:8000/api/users/'} </p>
       {error && <div className="error">Error: {error}</div>}
       <ul>
         {items.map((it, idx) => (
