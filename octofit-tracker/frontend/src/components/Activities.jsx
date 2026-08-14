@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
 
 const getApiBase = () => {
-  const codespace = import.meta.env.VITE_CODESPACE_NAME
-  return codespace
-    ? `https://${codespace}-8000.app.github.dev/api/`
+  return import.meta.env.VITE_CODESPACE_NAME
+    ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/`
     : 'http://localhost:8000/api/'
 }
 
@@ -28,9 +27,7 @@ export default function Activities() {
     setError(null)
     try {
       const base = getApiBase()
-      const fetchUrl = url || (import.meta.env.VITE_CODESPACE_NAME
-        ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/activities/`
-        : 'http://localhost:8000/api/activities/')
+      const fetchUrl = url || `${base}${endpoint}`
       const res = await fetch(fetchUrl)
       if (!res.ok) throw new Error(`${res.status} ${res.statusText}`)
       const data = await res.json()
